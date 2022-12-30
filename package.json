@@ -1,12 +1,12 @@
 {
   "name": "electron-course",
   "version": "1.0.0",
-  "description": "",
+  "description": "test electron",
   "main": "main.js",
   "scripts": {
     "start": "electron .",
     "electron:build": "electron-builder -m",
-    "release": "electron-builder -m --publish 'onTagOrDraft",
+    "release": "electron-builder -m --publish 'onTagOrDraft'",
     "watch": "nodemon --exec electron .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -33,7 +33,8 @@
       "provider": "github"
     },
     "mac": {
-      "target": "dmg"
+      "target": "dmg",
+      "publish": ["github"]
     }
   }
 }
