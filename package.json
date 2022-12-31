@@ -2,11 +2,15 @@
   "name": "electron-course",
   "version": "1.0.0",
   "description": "test electron",
-  "main": "main.js",
+  "main": "./src/main.js",
+  "private": true,
   "scripts": {
     "start": "electron .",
     "electron:build": "electron-builder -m",
-    "release": "electron-builder -m --publish 'onTagOrDraft'",
+    "webpack": "npx webpack --config webpack.config.js",
+    "webpack:watch": "webpack --watch",
+    "webpack:start": "webpack-dev-server --open",
+    "release": "electron-builder -m --publish 'always'",
     "watch": "nodemon --exec electron .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -14,18 +18,41 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "assert": "^2.0.0",
     "axios": "^1.2.1",
+    "browser": "^0.2.6",
+    "browserify-zlib": "^0.2.0",
+    "clean-webpack-plugin": "^4.0.0",
+    "constants-browserify": "^1.0.0",
+    "crypto-browserify": "^3.12.0",
     "electron-log": "^4.4.8",
     "electron-updater": "^5.3.0",
     "express": "^4.18.2",
-    "nodemon": "^2.0.20"
+    "fs": "^0.0.1-security",
+    "glob": "^8.0.3",
+    "https-browserify": "^1.0.0",
+    "node-polyfill-webpack-plugin": "^2.0.1",
+    "nodemon": "^2.0.20",
+    "os-browserify": "^0.3.0",
+    "path-browserify": "^1.0.1",
+    "stream-browserify": "^3.0.0",
+    "stream-http": "^3.2.0",
+    "url": "^0.11.0",
+    "webpack-dev-server": "^4.11.1",
+    "webpack-node-externals": "^3.0.0"
   },
   "devDependencies": {
+    "css-loader": "^6.7.3",
     "electron": "^22.0.0",
     "electron-builder": "^23.6.0",
-    "electron-rebuild": "^3.2.9"
+    "electron-rebuild": "^3.2.9",
+    "html-loader": "^4.2.0",
+    "html-webpack-plugin": "^5.5.0",
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.1"
   },
   "build": {
+  
     "asar": false,
     "appId": "com.nomecompagnia.nomeapp",
     "copyright": "copyright NomeAzienda",
@@ -33,8 +60,7 @@
       "provider": "github"
     },
     "mac": {
-      "target": "dmg",
-      "publish": ["github"]
+      "target": "default"
     }
   }
 }

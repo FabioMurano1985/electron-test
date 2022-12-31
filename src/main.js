@@ -36,8 +36,8 @@ let mainWindow;
   }) 
  
   // and load the index.html of the app.
-  mainWindow.loadFile('index-main.html')
-  secWindow.loadFile('index-second.html')
+  mainWindow.loadFile(`${__dirname}/index-main.html`)
+  secWindow.loadFile(`${__dirname}/index-second.html`)
 
   
   // Open the DevTools.
