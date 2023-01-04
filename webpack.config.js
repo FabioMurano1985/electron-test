@@ -40,7 +40,7 @@ module.exports = {
   
   target: "node", // per abiltare le libreire node (per esempio senza qst comando sarebbe esploso in fase di build per mancanza del modulo fs)
   devtool: "source-map", // per abilitare il file js.map (quando mode è impostatoa development) --> permettono di vedere dal browswer in modalità debug il file non minificato e uglificato che altrimenti si vedrebbe in fase di produzione
-  externals: [nodeExternals()], // per abiltare le libreire node (per esempio senza qst comando sarebbe esploso in fase di build per mancanza del modulo fs)
+  externals: [nodeExternals()], // per abiltare le librerie node (per esempio senza qst comando sarebbe esploso in fase di build per mancanza del modulo fs)
   plugins: [
     new HtmlWebpackPlugin({ }),
     new NodePolyfillPlugin(),

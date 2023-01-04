@@ -1,18 +1,62 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="./style.css">
-    <title>Main</title>
-  </head>
-  <body>
-    <h1>Effettua la login</h1>
-    
-    <button id="login-button">login</button>
-    <button id="call-api-button">call api</button>
 
-    <script src="render.js"></script>
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="./buttons.css">
+  <title>Main</title>
+</head>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+  integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+  integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+  crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<body>
+  <title>UTILS</title>
+
+
+  <!-- DA CAPIRE COSA FARE -->
+  <div class="button-row">
+    <i id="save" class="bi bi-save2"> save as .txt</i>
+  </div>
+
+  <hr>
+
+  <button id="reset" class="myButton">reset</button>
+  <button id="copy" class="myButton">copy</button>
+  <div style="padding: 10px;" class="row">
+    <div class="textarea-container">
+      <textarea id="textarea"></textarea>
+    </div>
+
+    <div class="mt-1 ml-2">
+      <div>
+        <i id="format-button" class="bi bi-braces"> format</i>
+      </div>
+
+      <div>
+        <i id="decodejwt-button">decode jwt</i>
+      </div>
+
+      <div>
+
+        <i id="convertb64-to-string-button">decode base64</button>
+      </div>
+
+    </div>
+
+  </div>
+
+
+
+
+  <!-- SCRIPT -->
+  <script src="render.js"></script>
+  <script src="converter.js"></script>
+</body>
 
 
 </html>

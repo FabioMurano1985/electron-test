@@ -1,62 +1,115 @@
-// main.js
-const updater=require('./updater');
 
 // Modules to control application life and create native browser window
-const { app, BrowserWindow , ipcMain} = require('electron')
-const path = require('path')
+const { app, BrowserWindow, ipcMain, Tray,Menu } = require('electron')
+const fs = require('fs')
+const { appMenu } = require('./menu');
+const updater = require('./updater');
 
 
-let secWindow;
 let mainWindow;
+let saveSuccessWindow;
+let noBlankValueModal;
+let tray = null;
 
- createWindow = () => {
+
+
+const appTryMenu = () => {
+  app.whenReady().then(() => {
+      tray = new Tray(`${__dirname}/assets/trayTemplate@2x.png`)
+      const contextMenu = Menu.buildFromTemplate([
+          { label: 'Always active' },
+          { role: 'quit' }
+        ]);
+
+      //tray.setToolTip('This is my application.')
+      tray.setContextMenu(contextMenu);
+
+      tray.on('click', e => {
+          if (e.shiftKey) {
+              app.quit()
+          } else {
+              mainWindow.isVisible() ? mainWindow.hide() : mainWindow.show()
+          }
+      })
+
+  })
+}
+
+
+
+
+
+createWindow = () => {
   // Create the browser window.
-   mainWindow = new BrowserWindow({
+  mainWindow = new BrowserWindow({
     width: 800,
-    height: 600, 
-    x:1200,
-    y:200,
+    height: 600,
+    x: 1200,
+    y: 200,
     webPreferences: {
-      nodeIntegration:true , // per usare node ed il require di node
-      contextIsolation:false // per usare node ed il require di node
+      nodeIntegration: true, // per usare node ed il require di node
+      contextIsolation: false // per usare node ed il require di node
     }
-  })      
+  })
+
+
+
   // Create the browser window.
-   secWindow = new BrowserWindow({
-    width: 400, 
-    height: 400, 
-    darkTheme:false, 
-    parent:mainWindow,
-    show:false,
-    modal:true,
+  saveSuccessWindow = new BrowserWindow({
+    width: 500,
+    height: 400,
+    darkTheme: false,
+    parent: mainWindow,
+    show: false,
+    modal: true,
     webPreferences: {
-      nodeIntegration:true,  // per usare node ed il require di node
-      contextIsolation:false // per usare node ed il require di node
+      nodeIntegration: true,  // per usare node ed il require di node
+      contextIsolation: false // per usare node ed il require di node
     }
-  }) 
- 
+  })
+
+
+  noBlankValueModal = new BrowserWindow({
+    width: 500,
+    height: 400,
+    darkTheme: false,
+    parent: mainWindow,
+    show: false,
+    modal: true,
+    webPreferences: {
+      nodeIntegration: true,  // per usare node ed il require di node
+      contextIsolation: false // per usare node ed il require di node
+    }
+  })
+
   // and load the index.html of the app.
   mainWindow.loadFile(`${__dirname}/index-main.html`)
-  secWindow.loadFile(`${__dirname}/index-second.html`)
+  saveSuccessWindow.loadFile(`${__dirname}/template/success.html`)
+  noBlankValueModal.loadFile(`${__dirname}/template/no-blank-value.html`)
 
-  
+
   // Open the DevTools.
   mainWindow.webContents.openDevTools()
+
+  //Create MENU
+  appMenu()
+  // Create TRAY
+  appTryMenu()
 
 
   setTimeout(() => {
     updater()
   }, 3000);
-  
+
 }
 
- 
+
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 app.whenReady().then(() => {
   createWindow()
-  
+
   app.on('activate', () => {
     // On macOS it's common to re-create a window in the app when the
     // dock icon is clicked and there are no other windows open.
@@ -75,8 +128,36 @@ app.on('window-all-closed', () => {
 // code. You can also put them in separate files and require them here.
 
 
-ipcMain.handle('open-modal',(res)=>{
-  secWindow.show()
+ipcMain.handle('open-modal', (res) => {
+  saveSuccessWindow.show()
+})
+
+
+// No BLANK VALUE
+ipcMain.handle('no-blank-value', (res) => {
+  noBlankValueModal.show()
+  setTimeout(() => {
+   // noBlankValueModal.hide()
+  }, 3000);
+})
+
+//SAVE FILE HANDLER
+ipcMain.handle('save-file', (e, data) => {
+  const content = data;
+
+  const homeDir = require('os').homedir();
+  const desktopDir = `${homeDir}/Desktop`;
+  const date = new Date().toISOString();
+  fs.writeFile(`${desktopDir}/${date}-file.txt`, content, err => {
+    if (err) {
+      console.error(err);
+    }
+    // file written successfully
+    saveSuccessWindow.show()
+    setTimeout(() => {
+      saveSuccessWindow.hide()
+    }, 3000);
+  });
 })
 
 

@@ -1,6 +1,81 @@
-body{
-    background-color: rgb(34, 30, 30);
-    height: 100%;
-    color: white;
+
+:root{
+    --sfondo:#118a7e;
+    --button-bg:#93e4c1 ;
+    --text-area-bg:white;
 }
 
+body {
+    background-color: var(--sfondo)!important;
+    height: 100%;
+    color: white;
+    padding: 10px;
+}
+
+#copy{
+    
+}
+
+title {
+    color: white !important;
+}
+
+
+.textarea-container {
+    width: 300px;
+    height: 400px;
+    resize: both;
+    overflow: auto;
+}
+
+
+textarea {
+    width: 100% !important;
+    height: 100% !important;
+    background-color: var(--text-area-bg);
+
+}
+
+title {
+    display: flex;
+    justify-content: center;
+}
+
+
+.button-row {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 1%;
+    justify-content: space-around;
+}
+
+button {
+    cursor: pointer;
+    background-color: var(--button-bg);
+}
+
+i{
+    cursor: pointer;
+}
+
+i:hover{
+    cursor: pointer;
+    font-size: large;
+}
+
+
+.first-color { 
+	background: #ffcbcb; 
+}
+	
+.second-color { 
+	background: #ffb5b5; 
+}
+
+.third-color { 
+	background: #407088; 
+}
+
+.fourth-color { 
+	background: #132743; 
+}
