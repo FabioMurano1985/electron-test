@@ -1,36 +1,60 @@
 
 // Modules to control application life and create native browser window
-const { app, BrowserWindow, ipcMain, Tray,Menu } = require('electron')
+const { app, BrowserWindow, ipcMain, Tray, Menu, powerSaveBlocker } = require('electron')
+// Main process
 const fs = require('fs')
 const { appMenu } = require('./menu');
 const updater = require('./updater');
+const base64 = require('base64topdf');
+
+
 
 
 let mainWindow;
 let saveSuccessWindow;
 let noBlankValueModal;
 let tray = null;
+let isActive=false;
+let id;
 
 
 
 const appTryMenu = () => {
   app.whenReady().then(() => {
-      tray = new Tray(`${__dirname}/assets/trayTemplate@2x.png`)
-      const contextMenu = Menu.buildFromTemplate([
-          { label: 'Always active' },
-          { role: 'quit' }
-        ]);
+    tray = new Tray(`${__dirname}/assets/trayTemplate@2x.png`)
+    const contextMenu = Menu.buildFromTemplate([
+      {
+        label: 'Always active ', click: () => {
+          //Impedisce al sistema di entrare in modalità a basso consumo (sospensione).
+          if (!isActive) {
+             id = powerSaveBlocker.start('prevent-display-sleep')
+             console.log(powerSaveBlocker.isStarted(id))
+            } else {
+              powerSaveBlocker.stop(id)
+              console.log(powerSaveBlocker.isStarted(id))
+            }
+          mainWindow.webContents.send('always-active', { isActive});
+          isActive=!isActive
+          contextMenu.items[0].checked = isActive
+          tray.setContextMenu(contextMenu);
 
-      //tray.setToolTip('This is my application.')
-      tray.setContextMenu(contextMenu);
 
-      tray.on('click', e => {
-          if (e.shiftKey) {
-              app.quit()
-          } else {
-              mainWindow.isVisible() ? mainWindow.hide() : mainWindow.show()
-          }
-      })
+
+        }
+      },
+      { role: 'quit' }
+    ]);
+    
+    //tray.setToolTip('This is my application.')
+    tray.setContextMenu(contextMenu);
+
+    tray.on('click', e => {
+      if (e.shiftKey) {
+        app.quit()
+      } else {
+     //   mainWindow.isVisible() ? mainWindow.hide() : mainWindow.show()
+      }
+    })
 
   })
 }
@@ -137,11 +161,13 @@ ipcMain.handle('open-modal', (res) => {
 ipcMain.handle('no-blank-value', (res) => {
   noBlankValueModal.show()
   setTimeout(() => {
-   // noBlankValueModal.hide()
+    noBlankValueModal.hide()
   }, 3000);
 })
 
 //SAVE FILE HANDLER
+
+
 ipcMain.handle('save-file', (e, data) => {
   const content = data;
 
@@ -159,6 +185,8 @@ ipcMain.handle('save-file', (e, data) => {
     }, 3000);
   });
 })
+
+
 
 
 

@@ -9,12 +9,9 @@ body {
     background-color: var(--sfondo)!important;
     height: 100%;
     color: white;
-    padding: 10px;
+    padding: 20px;
 }
 
-#copy{
-    
-}
 
 title {
     color: white !important;
@@ -32,13 +29,23 @@ title {
 textarea {
     width: 100% !important;
     height: 100% !important;
+    border-radius: 10px;
     background-color: var(--text-area-bg);
+    padding: 2%;
 
 }
 
 title {
     display: flex;
     justify-content: center;
+}
+
+.footer{
+    position:fixed;
+    bottom: 0;
+    right: 0;
+    background-color:#1f6f78;
+    color: white !important;
 }
 
 
@@ -64,18 +71,3 @@ i:hover{
 }
 
 
-.first-color { 
-	background: #ffcbcb; 
-}
-	
-.second-color { 
-	background: #ffb5b5; 
-}
-
-.third-color { 
-	background: #407088; 
-}
-
-.fourth-color { 
-	background: #132743; 
-}

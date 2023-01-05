@@ -1,5 +1,6 @@
 {
-  "name": "electron-course",
+  "name": "smartapp",
+  "productName":"Smartapp",
   "version": "1.0.0",
   "description": "test electron",
   "main": "./src/main.js",
@@ -10,20 +11,22 @@
     "webpack": "npx webpack --config webpack.config.js",
     "webpack:watch": "webpack --watch",
     "webpack:start": "webpack-dev-server --open",
-    "release": "electron-builder -m --publish 'always'",
+    "release": "electron-builder -m --publish 'onTagOrDraft'",
     "watch": "nodemon --exec electron .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
+  "author": "Fabio M",
   "license": "ISC",
   "dependencies": {
     "assert": "^2.0.0",
     "axios": "^1.2.1",
+    "base-64": "^1.0.0",
     "base64topdf": "^1.1.8",
     "bootstrap-icons": "^1.10.3",
     "browser": "^0.2.6",
     "browserify-zlib": "^0.2.0",
+    "bytes": "^3.1.2",
     "clean-webpack-plugin": "^4.0.0",
     "constants-browserify": "^1.0.0",
     "crypto-browserify": "^3.12.0",
@@ -34,16 +37,20 @@
     "glob": "^8.0.3",
     "https-browserify": "^1.0.0",
     "is-base64": "^1.1.0",
+    "js-base64": "^3.7.3",
     "jwt-decode": "^3.1.2",
     "node-polyfill-webpack-plugin": "^2.0.1",
     "nodemon": "^2.0.20",
     "os-browserify": "^0.3.0",
     "path-browserify": "^1.0.1",
+    "pdf-creator-node": "^2.3.5",
     "stream-browserify": "^3.0.0",
     "stream-http": "^3.2.0",
     "url": "^0.11.0",
+    "utf8": "^3.0.0",
     "webpack-dev-server": "^4.11.1",
-    "webpack-node-externals": "^3.0.0"
+    "webpack-node-externals": "^3.0.0",
+    "xml-formatter": "^3.2.0"
   },
   "devDependencies": {
     "css-loader": "^6.7.3",
@@ -57,13 +64,25 @@
   },
   "build": {
     "asar": false,
-    "appId": "com.nomecompagnia.nomeapp",
-    "copyright": "copyright NomeAzienda",
+    "appId": "com.fabiodeveloper.smartapp",
+    "copyright": "copyright Fabio Murano",
     "publish": {
       "provider": "github"
     },
     "mac": {
-      "target": "default"
+      "target": "default",
+      "category":"public.app-category.utilities"
+    },
+    "win": {
+      "target": [
+        {
+          "target": "zip",
+          "arch": [
+            "x64",
+            "ia32"
+          ]
+        }
+      ]
     }
   }
 }

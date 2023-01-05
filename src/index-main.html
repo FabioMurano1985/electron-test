@@ -15,12 +15,11 @@
   crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 <body>
-  <title>UTILS</title>
 
 
-  <!-- DA CAPIRE COSA FARE -->
   <div class="button-row">
-    <i id="save" class="bi bi-save2"> save as .txt</i>
+    <i id="save" class="bi bi-save2"> export content as txt</i>
+    <i id="view-pdf" class="bi bi-save2"> view pdf from base64</i>
   </div>
 
   <hr>
@@ -32,18 +31,53 @@
       <textarea id="textarea"></textarea>
     </div>
 
+    <!-- FORMAT JSON -->
     <div class="mt-1 ml-2">
-      <div>
-        <i id="format-button" class="bi bi-braces"> format</i>
+      <div class="mb-2">
+        <button title="format JSON" id="format-json-button" class="myButton2">
+          <i class="bi bi-braces"></i> format
+        </button>
       </div>
 
-      <div>
-        <i id="decodejwt-button">decode jwt</i>
+    <!-- FORMAT XML -->
+  
+      <div class="mb-2">
+        <button title="format XML" id="format-xml-button" class="myButton2">
+          XML format
+        </button>
       </div>
 
-      <div>
 
-        <i id="convertb64-to-string-button">decode base64</button>
+      <!-- VALIDATE JSON -->
+      
+        <div class="mb-2">
+          <button title="validate JSON" id="validate-json-button" class="myButton2">
+            <i class="bi bi-braces"></i> validate
+          </button>
+        </div>
+
+
+        <!-- JWT -->
+        <div class="mb-2">
+          <button title="decode JWT" id="decodejwt-button" class="myButton2">
+            <i>jwt decode</i>
+          </button>
+        </div>
+
+        <!-- FROM BASE64 -->
+        <div class="mb-2">
+          <button title="converte un base64 in una stringa" id="convertb64-to-string-button" class="myButton2">
+            <i>base64 decode</i>
+          </button>
+        </div>
+
+        <!-- TO BASE64 -->
+        <div class="mb-2">
+          <button title="converte una stringa in un base64" id="convert-string-tob64-button" class="myButton2">
+            <i>base64 encode</i>
+          </button>
+        </div>
+
       </div>
 
     </div>
@@ -51,8 +85,11 @@
   </div>
 
 
-
-
+  <!-- FOOTER BAR -->
+  <div class="w-100 footer d-flex w-100">
+    <span id="status" class="ml-2 mr-1" style="width: 40px;font-size: 12px;"></span>
+    <span id="is-always-active"  class="ml-1 mr-1" style="width: 40px;font-size: 12px;"></span>
+  </div>
   <!-- SCRIPT -->
   <script src="render.js"></script>
   <script src="converter.js"></script>
