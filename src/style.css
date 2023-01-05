@@ -22,7 +22,7 @@ title {
     width: 300px;
     height: 400px;
     resize: both;
-    overflow: auto;
+    overflow: hidden;
 }
 
 

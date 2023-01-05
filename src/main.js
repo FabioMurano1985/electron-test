@@ -68,21 +68,20 @@ createWindow = () => {
   mainWindow = new BrowserWindow({
     width: 800,
     height: 600,
-    x: 1200,
-    y: 200,
+    show:false,
     webPreferences: {
       nodeIntegration: true, // per usare node ed il require di node
       contextIsolation: false // per usare node ed il require di node
     }
   })
 
-
-
   // Create the browser window.
   saveSuccessWindow = new BrowserWindow({
     width: 500,
     height: 400,
     darkTheme: false,
+    // autoHideMenuBar:true,
+    frame:false,
     parent: mainWindow,
     show: false,
     modal: true,
@@ -96,6 +95,8 @@ createWindow = () => {
   noBlankValueModal = new BrowserWindow({
     width: 500,
     height: 400,
+   // autoHideMenuBar:true,
+    frame:false,
     darkTheme: false,
     parent: mainWindow,
     show: false,
@@ -119,6 +120,9 @@ createWindow = () => {
   appMenu()
   // Create TRAY
   appTryMenu()
+
+  mainWindow.once('ready-to-show',mainWindow.show)
+
 
 
   setTimeout(() => {
@@ -148,6 +152,12 @@ app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') app.quit()
 })
 
+app.on('gpu-process-crashed',()=>{
+  alert('crash')
+  app.relaunch()
+})
+
+
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
 
@@ -173,8 +183,8 @@ ipcMain.handle('save-file', (e, data) => {
 
   const homeDir = require('os').homedir();
   const desktopDir = `${homeDir}/Desktop`;
-  const date = new Date().toISOString();
-  fs.writeFile(`${desktopDir}/${date}-file.txt`, content, err => {
+  const path=`${desktopDir}/file.txt`
+  fs.writeFile(`${path}`, content, err => {
     if (err) {
       console.error(err);
     }

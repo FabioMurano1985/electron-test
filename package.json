@@ -1,22 +1,22 @@
 {
   "name": "smartapp",
   "productName":"Smartapp",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "test electron",
   "main": "./src/main.js",
   "private": true,
   "scripts": {
     "start": "electron .",
-    "electron:build": "electron-builder -m",
+    "electron:build": "electron-builder -w",
     "webpack": "npx webpack --config webpack.config.js",
     "webpack:watch": "webpack --watch",
     "webpack:start": "webpack-dev-server --open",
-    "release": "electron-builder -m --publish 'onTagOrDraft'",
+    "release": "electron-builder -w --publish 'onTagOrDraft'",
     "watch": "nodemon --exec electron .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "Fabio M",
+  "author": "Fabio Murano",
   "license": "ISC",
   "dependencies": {
     "assert": "^2.0.0",
@@ -63,7 +63,7 @@
     "webpack-cli": "^5.0.1"
   },
   "build": {
-    "asar": false,
+    "asar": true,
     "appId": "com.fabiodeveloper.smartapp",
     "copyright": "copyright Fabio Murano",
     "publish": {
@@ -74,15 +74,7 @@
       "category":"public.app-category.utilities"
     },
     "win": {
-      "target": [
-        {
-          "target": "zip",
-          "arch": [
-            "x64",
-            "ia32"
-          ]
-        }
-      ]
+     
     }
   }
 }

@@ -20,7 +20,14 @@ const appMenu = () => {
                 { type: 'separator' },
                 { role: 'quit' }
             ]
-        }] : []),
+        }] : [{
+            label: app.name,
+            submenu: [
+                { role: 'about' },
+                { type: 'separator' },
+                { role: 'quit' }
+            ]
+        }]),
         // { role: 'fileMenu' }
         {
             label: 'File',
