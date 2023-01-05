@@ -1,7 +1,7 @@
 {
   "name": "smartapp",
   "productName":"Smartapp",
-  "version": "1.0.1",
+  "version": "1.0.0",
   "description": "test electron",
   "main": "./src/main.js",
   "private": true,
@@ -11,7 +11,7 @@
     "webpack": "npx webpack --config webpack.config.js",
     "webpack:watch": "webpack --watch",
     "webpack:start": "webpack-dev-server --open",
-    "release": "electron-builder -w --publish 'onTagOrDraft'",
+    "release": "electron-builder -w --publish onTagOrDraft",
     "watch": "nodemon --exec electron .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -48,11 +48,11 @@
     "stream-http": "^3.2.0",
     "url": "^0.11.0",
     "utf8": "^3.0.0",
-    "webpack-dev-server": "^4.11.1",
-    "webpack-node-externals": "^3.0.0",
     "xml-formatter": "^3.2.0"
   },
   "devDependencies": {
+    "webpack-dev-server": "^4.11.1",
+    "webpack-node-externals": "^3.0.0",
     "css-loader": "^6.7.3",
     "electron": "^22.0.0",
     "electron-builder": "^23.6.0",
