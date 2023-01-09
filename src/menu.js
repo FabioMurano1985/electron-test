@@ -1,9 +1,9 @@
-const { app, Menu } = require('electron');
+const { app, Menu, dialog } = require('electron');
 
 
 const isMac = process.platform === 'darwin'
 
-const appMenu = () => {
+const appMenu = (mainWindow) => {
 
     const template = [
         // { role: 'appMenu' }
@@ -22,8 +22,7 @@ const appMenu = () => {
             ]
         }] : [{
             label: app.name,
-            submenu: [
-                { role: 'about' },
+            submenu: [          
                 { type: 'separator' },
                 { role: 'quit' }
             ]
@@ -106,7 +105,21 @@ const appMenu = () => {
                         await shell.openExternal('https://electronjs.org')
                     }
                 },
-                { label: `Version ${app.getVersion()}` }
+                {
+                    label: 'About',
+                    click: async () => {
+                        
+                        let version=`Version ${app.getVersion()}`;
+                        dialog.showMessageBox({
+                            type: 'info',
+                            title: 'about',
+                            message: version,
+                            
+                          })
+                      //  mainWindow.webContents.send('about',version);
+
+                    }
+                }
             ]
         }
     ]

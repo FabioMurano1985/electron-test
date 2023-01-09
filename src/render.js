@@ -1,6 +1,6 @@
 const {ipcRenderer} = require('electron')
 const isBase64 = require('is-base64');
-const {printPdf} = require('./utils/utils')
+const {printPdf,mainAlert} = require('./utils/utils')
 const {textArea} = require('./converter')
 
 
@@ -21,16 +21,22 @@ const {textArea} = require('./converter')
         const textAreaValue=textArea.value || ""
         if(!textAreaValue){
            // ipcRenderer.invoke('no-blank-value',textAreaValue)
-           alert('per visualizzare il pdf è necessario inserire un base64 nella textarea.')
+           mainAlert('per visualizzare il pdf è necessario inserire un base64 nella textarea.')
             return;
         }      
         if(!isBase64(textAreaValue)){
-            alert('il formato deve essere basa64')
+            mainAlert('il formato deve essere basa64')
             return;
         }      
         printPdf(textAreaValue)
          
 })
+
+//ABOUT
+// ipcRenderer.on('about',(evt, message)=> {
+// mainAlert(message)
+// })
+
 
 
 //ALWAYS ACTIVE

@@ -2,6 +2,8 @@ const jwtDecode = require("jwt-decode");
 const {Base64} = require('js-base64');
 const xmlFormat = require('xml-formatter');
 const { clipboard } = require('electron')
+const { mainAlert } = require('./utils/utils')
+
 
 
 const _textArea = document.getElementById('textarea');
@@ -9,10 +11,13 @@ const _textArea = document.getElementById('textarea');
 //UTILS
 const isEmpty = (value) => {
     if (!value) {
-        alert('il campo non può essere vuoto');
+      mainAlert('il campo non può essere vuoto')
+     
         return true;
     }
 }
+
+
 
 
 //BUTTONS
@@ -31,7 +36,10 @@ let value = "";
 let token = "";
 
 _textArea.onfocus = () => {
-    if(!!_textArea.value) return;
+    if(!!_textArea.value){
+        clipboard.readText()
+        return;
+    } 
     const text = clipboard.readText()
     _textArea.value = text
 }
@@ -46,7 +54,7 @@ formatJSON.onclick = ((ev) => {
 
     } catch (error) {
 
-        alert('il formato non è corretto, inserisci un JSON');
+        mainAlert('il formato non è corretto, inserisci un JSON');
     }
 
 })
@@ -59,7 +67,7 @@ formatXML.onclick = ((ev) => {
 
     } catch (error) {
 
-        alert('il formato non è corretto, inserisci un XML');
+        mainAlert('il formato non è corretto, inserisci un XML');
         return;
     }
 
@@ -74,10 +82,10 @@ validateJSON.onclick = ((ev) => {
 
     } catch (error) {
 
-        alert('il valore inserito non risulta essere un JSON');
+        mainAlert('il valore inserito non risulta essere un JSON');
         return;
     }
-    alert('formato valido')
+    mainAlert('formato valido')
 })
 
 DecodeJWT.onclick = ((ev) => {
@@ -88,7 +96,7 @@ DecodeJWT.onclick = ((ev) => {
         _textArea.value = JSON.stringify(tokenDecoded)
 
     } catch (error) {
-        alert('errore conversione')
+        mainAlert('errore conversione')
     }
 
 })
@@ -109,7 +117,7 @@ base64toString.onclick = ((ev) => {
     value = _textArea.value.trim();
     if (isEmpty(value)) return;
     // if (!isBase64(value)) {
-    //     alert('non è un formato base64')
+    //     mainAlert('non è un formato base64')
     //     return
     // }
     try {
@@ -119,7 +127,7 @@ base64toString.onclick = ((ev) => {
 
 
     } catch (error) {
-        alert('errore conversione')
+        mainAlert('errore conversione')
     }
 
 })
@@ -127,7 +135,7 @@ base64toString.onclick = ((ev) => {
 stringTobase64.onclick = ((ev) => {
     value = _textArea.value.trim();
 //     if (isBase64(value)) {
-//    alert('il formato attuale è già base64')
+//    mainAlert('il formato attuale è già base64')
 //         return;
 //     }
     if (isEmpty(value)) return;
@@ -138,7 +146,7 @@ stringTobase64.onclick = ((ev) => {
 
 
     } catch (error) {
-        alert('errore conversione')
+        mainAlert('errore conversione')
     }
 
 })

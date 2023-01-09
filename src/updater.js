@@ -15,7 +15,6 @@ module.exports = () => {
     dialog.showMessageBox({
       type: 'info',
       title: 'Update avaible',
-      title: 'Update avaible',
       message: "A new version of Smartapp is Avaible. Do you want to update now?",
       buttons: [
         'Update', 'no'
@@ -33,7 +32,6 @@ module.exports = () => {
       dialog.showMessageBox({
         type: 'info',
         title: 'Update ready',
-        title: 'Update avaible',
         message: "Install & restart now?",
         buttons: [
           'Yes', 'Later'

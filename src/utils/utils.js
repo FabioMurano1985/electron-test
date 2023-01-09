@@ -1,4 +1,5 @@
 const axios = require('axios');
+const { ipcRenderer } = require('electron')
 
 
 // const URL="https://jsonplaceholder.typicode.com/todos/1"
@@ -7,7 +8,10 @@ const axios = require('axios');
 
 // const call=()=> axios(URL)
 
-      
+const mainAlert=(msg)=>{
+  ipcRenderer.invoke('open-dialog',msg)
+}
+
      
 
 const printPdf=(base64)=>{
@@ -22,4 +26,4 @@ const printPdf=(base64)=>{
   }
 
 
-  module.exports={printPdf}
+  module.exports={printPdf,mainAlert}

@@ -1,6 +1,6 @@
 
 // Modules to control application life and create native browser window
-const { app, BrowserWindow, ipcMain, Tray, Menu, powerSaveBlocker } = require('electron')
+const { app, BrowserWindow, ipcMain, Tray, Menu, powerSaveBlocker ,dialog} = require('electron')
 // Main process
 const fs = require('fs')
 const { appMenu } = require('./menu');
@@ -21,7 +21,7 @@ let id;
 
 const appTryMenu = () => {
   app.whenReady().then(() => {
-    tray = new Tray(`${__dirname}/assets/trayTemplate@2x.png`)
+    tray = new Tray(`${__dirname}/assets/icons.png`)
     const contextMenu = Menu.buildFromTemplate([
       {
         label: 'Always active ', click: () => {
@@ -117,7 +117,7 @@ createWindow = () => {
   mainWindow.webContents.openDevTools()
 
   //Create MENU
-  appMenu()
+  appMenu(mainWindow)
   // Create TRAY
   appTryMenu()
 
@@ -162,8 +162,11 @@ app.on('gpu-process-crashed',()=>{
 // code. You can also put them in separate files and require them here.
 
 
-ipcMain.handle('open-modal', (res) => {
-  saveSuccessWindow.show()
+ipcMain.handle('open-dialog', (res,msg) => {
+  dialog.showMessageBox({
+    type: 'info',
+    message: msg,
+  })
 })
 
 
