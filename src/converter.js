@@ -11,7 +11,7 @@ const _textArea = document.getElementById('textarea');
 //UTILS
 const isEmpty = (value) => {
     if (!value) {
-      mainAlert('il campo non può essere vuoto')
+      mainAlert('il campo non può essere vuoto','error')
      
         return true;
     }
@@ -54,7 +54,7 @@ formatJSON.onclick = ((ev) => {
 
     } catch (error) {
 
-        mainAlert('il formato non è corretto, inserisci un JSON');
+        mainAlert('il formato non è corretto, inserisci un JSON','error');
     }
 
 })
@@ -67,7 +67,7 @@ formatXML.onclick = ((ev) => {
 
     } catch (error) {
 
-        mainAlert('il formato non è corretto, inserisci un XML');
+        mainAlert('il formato non è corretto, inserisci un XML','error');
         return;
     }
 
@@ -82,10 +82,10 @@ validateJSON.onclick = ((ev) => {
 
     } catch (error) {
 
-        mainAlert('il valore inserito non risulta essere un JSON');
+        mainAlert('il valore inserito non risulta essere un JSON','error');
         return;
     }
-    mainAlert('formato valido')
+   
 })
 
 DecodeJWT.onclick = ((ev) => {
@@ -96,7 +96,7 @@ DecodeJWT.onclick = ((ev) => {
         _textArea.value = JSON.stringify(tokenDecoded)
 
     } catch (error) {
-        mainAlert('errore conversione')
+        mainAlert('errore conversione','error')
     }
 
 })
@@ -127,7 +127,7 @@ base64toString.onclick = ((ev) => {
 
 
     } catch (error) {
-        mainAlert('errore conversione')
+        mainAlert('errore conversione','error')
     }
 
 })
@@ -146,7 +146,7 @@ stringTobase64.onclick = ((ev) => {
 
 
     } catch (error) {
-        mainAlert('errore conversione')
+        mainAlert('errore conversione','error')
     }
 
 })

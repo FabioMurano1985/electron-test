@@ -8,8 +8,8 @@ const { ipcRenderer } = require('electron')
 
 // const call=()=> axios(URL)
 
-const mainAlert=(msg)=>{
-  ipcRenderer.invoke('open-dialog',msg)
+const mainAlert=(msg,type)=>{
+  ipcRenderer.invoke('open-dialog',msg,type ||"" )
 }
 
      

@@ -162,9 +162,9 @@ app.on('gpu-process-crashed',()=>{
 // code. You can also put them in separate files and require them here.
 
 
-ipcMain.handle('open-dialog', (res,msg) => {
+ipcMain.handle('open-dialog', (res,msg,restype) => {
   dialog.showMessageBox({
-    type: 'info',
+    type:restype || 'info',
     message: msg,
   })
 })

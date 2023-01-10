@@ -109,16 +109,20 @@ const appMenu = (mainWindow) => {
                     label: 'About',
                     click: async () => {
                         
-                        let version=`Version ${app.getVersion()}`;
                         dialog.showMessageBox({
-                            type: 'info',
-                            title: 'about',
-                            message: version,
+                            title: `About ${app.name}`,
+                            message: `${app.name} ${app.getVersion()}`,
+                            detail: `Dev Fabio Murano.`,
+                            type: 'info'
                             
-                          })
+                           });
+                            
+                
                       //  mainWindow.webContents.send('about',version);
 
                     }
+                        
+                    
                 }
             ]
         }
