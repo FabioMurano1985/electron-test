@@ -112,7 +112,7 @@ const appMenu = (mainWindow) => {
                         dialog.showMessageBox({
                             title: `About ${app.name}`,
                             message: `${app.name} ${app.getVersion()}`,
-                            detail: `Dev Fabio Murano.`,
+                            detail: `Developed by Fabio Murano.`,
                             type: 'info'
                             
                            });

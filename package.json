@@ -1,8 +1,8 @@
 {
   "name": "smartapp",
   "productName": "Smartapp",
-  "version": "1.0.0",
-  "description": "test electron",
+  "version": "1.0.2",
+  "description": "tool per sviluppatori",
   "main": "./src/main.js",
   "private": true,
   "scripts": {
