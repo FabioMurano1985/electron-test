@@ -128,7 +128,7 @@ createWindow = () => {
 
   setTimeout(() => {
     updater()
-  }, 3000);
+  }, 6000);
 
 }
 

@@ -1,7 +1,7 @@
 {
   "name": "smartapp",
   "productName": "Smartapp",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "tool per sviluppatori",
   "main": "./src/main.js",
   "private": true,

@@ -4,7 +4,7 @@
 # per configurazione webpack (funzionante ma non in uso dall'applicazione leggere nei commenti)
 
 # check update logs
-C:\Users\{nomeutente}\AppData\Roaming\Smartapp\logs\main.lo
+C:\Users\{nomeutente}\AppData\Roaming\Smartapp\logs\main.log
 
 # per effettuare un rilascio
 cambiare la versione nel package.json es 1.0.1
