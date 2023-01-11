@@ -1,6 +1,6 @@
 {
   "name": "smartapp",
-  "productName":"Smartapp",
+  "productName": "Smartapp",
   "version": "1.0.0",
   "description": "test electron",
   "main": "./src/main.js",
@@ -33,11 +33,13 @@
     "electron-log": "^4.4.8",
     "electron-updater": "^5.3.0",
     "express": "^4.18.2",
+    "express-hogan-pdf": "^2.1.0",
     "fs": "^0.0.1-security",
     "glob": "^8.0.3",
     "https-browserify": "^1.0.0",
     "is-base64": "^1.1.0",
     "js-base64": "^3.7.3",
+    "jspdf": "^2.5.1",
     "jwt-decode": "^3.1.2",
     "node-polyfill-webpack-plugin": "^2.0.1",
     "nodemon": "^2.0.20",
@@ -48,11 +50,10 @@
     "stream-http": "^3.2.0",
     "url": "^0.11.0",
     "utf8": "^3.0.0",
-    "xml-formatter": "^3.2.0"
+    "xml-formatter": "^3.2.0",
+    "xml-to-pdf": "^1.4.2"
   },
   "devDependencies": {
-    "webpack-dev-server": "^4.11.1",
-    "webpack-node-externals": "^3.0.0",
     "css-loader": "^6.7.3",
     "electron": "^22.0.0",
     "electron-builder": "^23.6.0",
@@ -60,7 +61,9 @@
     "html-loader": "^4.2.0",
     "html-webpack-plugin": "^5.5.0",
     "webpack": "^5.75.0",
-    "webpack-cli": "^5.0.1"
+    "webpack-cli": "^5.0.1",
+    "webpack-dev-server": "^4.11.1",
+    "webpack-node-externals": "^3.0.0"
   },
   "build": {
     "asar": true,
@@ -71,10 +74,8 @@
     },
     "mac": {
       "target": "default",
-      "category":"public.app-category.utilities"
+      "category": "public.app-category.utilities"
     },
-    "win": {
-     
-    }
+    "win": {}
   }
 }

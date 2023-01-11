@@ -1,6 +1,6 @@
 const {ipcRenderer} = require('electron')
 const isBase64 = require('is-base64');
-const {printPdf,mainAlert} = require('./utils/utils')
+const {printPdf,mainAlert} = require('./utils/utils');
 const {textArea} = require('./converter')
 
 
@@ -30,6 +30,18 @@ const {textArea} = require('./converter')
         }      
         printPdf(textAreaValue)
          
+})
+
+
+    document.getElementById('export-to-pdf').addEventListener('click',()=>{
+        const textAreaValue=textArea.value || ""
+        if(!textAreaValue){
+            ipcRenderer.invoke('no-blank-value',textAreaValue)
+            return;
+        }        
+         ipcRenderer.invoke('save-pdf-file',textAreaValue)
+             
+            
 })
 
 //ABOUT

@@ -2,7 +2,8 @@
 // Modules to control application life and create native browser window
 const { app, BrowserWindow, ipcMain, Tray, Menu, powerSaveBlocker ,dialog} = require('electron')
 // Main process
-const fs = require('fs')
+const fs = require('fs');
+const {jsPDF} = require('jspdf');
 const { appMenu } = require('./menu');
 const updater = require('./updater');
 const base64 = require('base64topdf');
@@ -186,7 +187,7 @@ ipcMain.handle('save-file', (e, data) => {
 
   const homeDir = require('os').homedir();
   const desktopDir = `${homeDir}/Desktop`;
-  const path=`${desktopDir}/file.txt`
+  const path=`${desktopDir}/_file.txt`
   fs.writeFile(`${path}`, content, err => {
     if (err) {
       console.error(err);
@@ -197,6 +198,31 @@ ipcMain.handle('save-file', (e, data) => {
       saveSuccessWindow.hide()
     }, 3000);
   });
+})
+
+
+
+ipcMain.handle('save-pdf-file', (e, data) => {
+  const content = data;
+
+  const homeDir = require('os').homedir();
+  const desktopDir = `${homeDir}/Desktop`;
+  const path=`${desktopDir}/_file.pdf`;
+ try {
+
+  doc=new jsPDF();
+  doc.text(content,10,10);
+  doc.save(path)      
+   // file written successfully
+   saveSuccessWindow.show()
+   setTimeout(() => {
+     saveSuccessWindow.hide()
+   }, 3000);
+ } catch (error) {
+  console.error(error);
+ }
+ 
+
 })
 
 
